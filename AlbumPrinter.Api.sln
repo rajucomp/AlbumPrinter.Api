@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.810.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlbumPrinter.Api", "AlbumPrinter.Api\AlbumPrinter.Api.csproj", "{79F66DA3-AA0E-4E9B-88B8-1910B3403EEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlbumPrinter.Api.Tes", "AlbumPrinter.Api.Tes\AlbumPrinter.Api.Tes.csproj", "{EB9C9953-22F9-4E0E-8FD2-6581B7E1872C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{79F66DA3-AA0E-4E9B-88B8-1910B3403EEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79F66DA3-AA0E-4E9B-88B8-1910B3403EEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79F66DA3-AA0E-4E9B-88B8-1910B3403EEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79F66DA3-AA0E-4E9B-88B8-1910B3403EEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB9C9953-22F9-4E0E-8FD2-6581B7E1872C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB9C9953-22F9-4E0E-8FD2-6581B7E1872C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB9C9953-22F9-4E0E-8FD2-6581B7E1872C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB9C9953-22F9-4E0E-8FD2-6581B7E1872C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F8AEE56B-ED4D-497C-BA50-DE1B7626DAFA}
+	EndGlobalSection
+EndGlobal
