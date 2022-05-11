@@ -5,7 +5,7 @@ using AlbumPrinter.Api.Controllers;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AlbumPrinter.Api.Tes
+namespace AlbumPrinter.Api.Test
 {
 
     public class OrderControllerTests
