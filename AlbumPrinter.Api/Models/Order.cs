@@ -22,27 +22,4 @@ namespace AlbumPrinter.Api.Models
             this.Products = new List<Product>();
         }
     }
-
-
-    public class Product
-    {
-        public ProductTypeEnum ProductType { get; set; }
-        public int Quantity { get; set; }
-        public double Width { get; set; }
-
-        public Product(ProductTypeEnum productType, int quantity)
-        {
-            this.ProductType = productType;
-            this.Quantity = quantity;
-        }
-    }
-
-    public enum ProductTypeEnum
-    {
-        PhotoBook = 1,
-        Calendar = 2,
-        Canvas = 3,
-        Cards = 4,
-        Mug = 5
-    }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace AlbumPrinter.Api
 {
-    public class OrderService
+    public class OrderService : IOrderService
     {
         IDictionary<ProductTypeEnum, IWidthCalculator> enumToCalculatorDictionary =
             new Dictionary<ProductTypeEnum, IWidthCalculator>
