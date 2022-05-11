@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net.Mime;
 using System.Threading.Tasks;
 using AlbumPrinter.Api.Models;
@@ -19,18 +20,62 @@ namespace AlbumPrinter.Api.Controllers
 
         [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [HttpPost, Route("/Post")]
-        public IActionResult Post(Order order)
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [HttpPost]
+        public ActionResult Post(Order order)
         {
-             _orderService.Post(order);
-            return Ok();
+            if (IsNotValid(order))
+            {
+                return BadRequest();
+            }
+
+            if(!IsValidProductType(order))
+            {
+                return NotFound();
+            }
+            try
+            {
+                _orderService.Post(order);
+                return Ok();
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+             
         }
 
-        [HttpGet("{id}")]
-        public Order Get(int orderId)
+        bool IsNotValid(Order order)
         {
-            return _orderService.Get(orderId);
+            return order.OrderId <= 0 || order.Products.Any(x => x.Quantity <= 0);
+        }
+
+        bool IsValidProductType(Order order)
+        {
+            return order.Products.All(x => (int)x.ProductType >= 1 && (int)x.ProductType <= 5);
+        }
+
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult<Order> Get(int orderId)
+        {
+            try
+            {
+                Order order = _orderService.Get(orderId);
+
+                if (order == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(order);
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+            
         }
     }
 

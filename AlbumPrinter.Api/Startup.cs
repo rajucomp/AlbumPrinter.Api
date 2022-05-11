@@ -26,6 +26,8 @@ namespace AlbumPrinter.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSwaggerGen();
+            services.AddSingleton<IOrderService, OrderService>();
    
         }
 
@@ -42,6 +44,10 @@ namespace AlbumPrinter.Api
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI();
 
             app.UseEndpoints(endpoints =>
             {

@@ -30,10 +30,8 @@ namespace AlbumPrinter.Api.Test
             };
 
             Order order = new Order(1, products);
-
-            Order result = orderController.Get(order.OrderId);
-
-            Assert.Null(result);
+            var result = orderController.Get(order.OrderId);
+            Assert.IsType<NotFoundResult>(result.Result);
 
         }
 
@@ -51,7 +49,14 @@ namespace AlbumPrinter.Api.Test
 
             orderController.Post(order);
 
-            var result = orderController.Get(order.OrderId);
+            // Act
+            var response = orderController.Get(order.OrderId);
+
+            // Assert
+            var okObjectResult = (OkObjectResult)(response.Result);
+            Assert.NotNull(okObjectResult);
+
+            var result = okObjectResult.Value as Order;
 
             var expectedValue = 133;
 
@@ -72,7 +77,14 @@ namespace AlbumPrinter.Api.Test
 
             orderController.Post(order);
 
-            var result = orderController.Get(order.OrderId);
+            // Act
+            var response = orderController.Get(order.OrderId);
+
+            // Assert
+            var okObjectResult = (OkObjectResult)(response.Result);
+            Assert.NotNull(okObjectResult);
+
+            var result = okObjectResult.Value as Order;
 
             var expectedValue = 133;
 
@@ -93,7 +105,14 @@ namespace AlbumPrinter.Api.Test
 
             orderController.Post(order);
 
-            var result = orderController.Get(order.OrderId);
+            // Act
+            var response = orderController.Get(order.OrderId);
+
+            // Assert
+            var okObjectResult = (OkObjectResult)(response.Result);
+            Assert.NotNull(okObjectResult);
+
+            var result = okObjectResult.Value as Order;
 
             var expectedValue = 227;
 
@@ -114,11 +133,56 @@ namespace AlbumPrinter.Api.Test
 
             orderController.Post(order);
 
-            var result = orderController.Get(order.OrderId);
+            // Act
+            var response = orderController.Get(order.OrderId);
+
+            // Assert
+            var okObjectResult = (OkObjectResult)(response.Result);
+            Assert.NotNull(okObjectResult);
+
+            var result = okObjectResult.Value as Order;
 
             var expectedValue = 321;
 
             Assert.Equal(expectedValue, result.RequiredBinWidth, 2);
+        }
+
+        [Fact]
+        public void TestForNegativeQuantity()
+        {
+            var products = new List<Product>()
+            {
+                new Product(ProductTypeEnum.PhotoBook, -1),
+                new Product(ProductTypeEnum.Calendar, -2),
+                new Product(ProductTypeEnum.Mug, -9)
+            };
+
+            var order = new Order(1, products);
+
+            var response = orderController.Post(order);
+
+            // Assert
+            var badRequestResult = (BadRequestResult)(response);
+            Assert.NotNull(badRequestResult);
+        }
+
+        [Fact]
+        public void TestForNegativeOrderId()
+        {
+            var products = new List<Product>()
+            {
+                new Product(ProductTypeEnum.PhotoBook, 1),
+                new Product(ProductTypeEnum.Calendar, 2),
+                new Product(ProductTypeEnum.Mug, 9)
+            };
+
+            var order = new Order(-1, products);
+
+            var response = orderController.Post(order);
+
+            // Assert
+            var badRequestResult = (BadRequestResult)(response);
+            Assert.NotNull(badRequestResult);
         }
     }
 }
