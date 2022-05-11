@@ -7,6 +7,7 @@ namespace AlbumPrinter.Api
         {
 
         }
+        
         public override double CalculateWidth(int quantity)
         {
             return width * quantity;

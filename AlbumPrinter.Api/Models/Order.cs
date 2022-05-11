@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace AlbumPrinter.Api.Models
 {
-
     public class Order
     {
         public int OrderId { get; set; }

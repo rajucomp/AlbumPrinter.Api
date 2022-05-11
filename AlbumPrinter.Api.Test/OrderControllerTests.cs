@@ -11,7 +11,7 @@ namespace AlbumPrinter.Api.Test
     public class OrderControllerTests
     {
         readonly OrderController orderController;
-        readonly OrderService orderService;
+        readonly IOrderService orderService;
 
         public OrderControllerTests()
         {

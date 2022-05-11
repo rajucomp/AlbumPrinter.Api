@@ -11,8 +11,8 @@ namespace AlbumPrinter.Api.Controllers
     [Route("[controller]")]
     public class OrderController : ControllerBase
     {
-        readonly OrderService _orderService;
-        public OrderController(OrderService orderService)
+        readonly IOrderService _orderService;
+        public OrderController(IOrderService orderService)
         {
             this._orderService = orderService;
         }
@@ -26,7 +26,6 @@ namespace AlbumPrinter.Api.Controllers
              _orderService.Post(order);
             return Ok();
         }
-
 
         [HttpGet("{id}")]
         public Order Get(int orderId)
